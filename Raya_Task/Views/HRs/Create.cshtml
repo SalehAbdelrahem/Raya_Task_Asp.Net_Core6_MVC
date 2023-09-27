@@ -1,0 +1,53 @@
+﻿@model BLL.DTOs.HRs.EmployeeDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h4>Employee Create</h4>
+<hr />
+<div class="d-flex justify-content-center shadow bg-secondary bg-gradient rounded-3">
+    <div class="w-50">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           @* <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            <div class="form-group p-2">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control  rounded-pill" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" class="form-control  rounded-pill" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2">
+                <label asp-for="HireDate" class="control-label"></label>
+                <input asp-for="HireDate" id="HireDate" class="form-control  rounded-pill" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2">
+                <label asp-for="Status" class="control-label"></label>
+         @*       <input asp-for="Status" class="form-control" />*@
+                <select asp-for="Status" asp-items="@ViewBag.Status" class="form-control  rounded-pill"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2 d-flex justify-content-between">
+                <input type="submit" value="Create" class="btn CustomCreateButtonColor " />
+              
+                    <a asp-action="Index"  class="btn CustomButtonColor"> <i class="fa-solid fa-angles-left"></i>Back to List</a>
+               
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    
+}

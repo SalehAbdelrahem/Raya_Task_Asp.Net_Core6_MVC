@@ -1,0 +1,61 @@
+﻿@model BLL.DTOs.Roles.RoleDetailsWithUsersNameDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+      @*  <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Id)
+        </dd>*@
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        @if(Model.UsersName.Any())
+        {
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UsersName)
+            </dt>
+            <dd class="col-sm-9 w-50">
+                <select class="form-select rounded-pill">
+                    @foreach(var item in Model.UsersName)
+                    {
+                        <option value="item">@item</option>
+                    }
+                </select>
+              
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.UsersName)
+            </dt>
+            <dd class="col-sm-9 w-50">
+                <label class="form-label text-danger">
+                    NOt Found any user for this Role
+                </label>
+             
+            </dd>
+            
+        }
+
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn CustomButtonColor"> <i style="font-size:smaller" class="mx-1 fa-solid fa-pen-to-square"></i>Edit</a>|
+    <a asp-action="Index" class="btn CustomButtonColor"><i class="fa-solid fa-angles-left"></i>Back to List</a>
+</div>

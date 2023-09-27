@@ -1,0 +1,216 @@
+﻿@using DAL.Models;
+@using Microsoft.AspNetCore.Identity;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RayaTask</title>
+
+<!-- Favicons -->
+    @*<link href="~/assets/img/favicon.png" rel="icon">
+    <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+*@
+    <!-- Favicons -->
+    <link href="~/assets/img/favicon.png" rel="icon">@*
+    <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">*@
+    <script src="https://kit.fontawesome.com/adc5c6a0d2.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- fontawesome-->
+    @*<link href="~/assets/fontawesome-free/css/all.min.css" rel="stylesheet">*@
+
+    <script src="https://kit.fontawesome.com/adc5c6a0d2.js" crossorigin="anonymous"></script>
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    @*Change style on site *@
+    <link href="~/css/site.css" asp-append-version="true" rel="stylesheet">
+
+</head>
+<body>
+  
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex justify-content-between">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a asp-action="Index" asp-controller="Home" class="logo d-flex align-items-center">
+
+                <span class="d-none d-lg-block">Raya Task</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+        
+        <nav class="nav justify-content-center  fs-5">
+            <a class="nav-link text-dark fw-light" asp-action="Index" asp-controller="Home" aria-current="page">Home</a>
+         
+            <a class="nav-link text-dark fw-light" asp-action="Index" asp-controller="Hrs">Employee</a>
+            <a class="nav-link text-dark fw-light" asp-action="Index" asp-controller="Users">User</a>
+        </nav>
+       
+
+        <div class="dropdown p-2">
+            <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button"
+                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Hello , @User.Identity?.Name
+
+
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @if (string.IsNullOrEmpty(@User.Identity.Name))
+                {
+                    <li><a class="dropdown-item" asp-action="LogIN" asp-controller="Accounts">SignIn</a></li>
+                    <li><a class="dropdown-item" asp-action="SignUp" asp-controller="Accounts">SignUp</a></li>
+
+                }
+                <li><a class="dropdown-item" asp-action="LogOut" asp-controller="Accounts">LogOut</a></li>
+            </ul>
+        </div>
+
+        
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar " style="background-color:#3C4B64">
+
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <!-- start Dashboard Nav -->
+            <li class="nav-item">
+                <a style="background-color:#303C54;color:white;border-radius:25px" class="nav-link " asp-action="Index" asp-controller="Home">
+                    <i style="color:white" class="bi bi-grid mx-2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
+
+           
+
+            <!-- start Employee Nav -->
+            <li class="nav-item" style="background-color:#303C54;color:white;border-radius:25px">
+                <a style="background-color:#303C54;color:white;border-radius:25px" class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:white" class="fas fa-user-tie fa-lg mx-2 "></i><span>Employee</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="HRs" asp-action="Index">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>All Employee</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="HRs" asp-action="Create">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>Create New Employee</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <!-- End Employee Nav -->
+            <!-- start Role Nav -->
+            <li class="nav-item" style="background-color:#303C54;color:white;border-radius:25px">
+                <a style="background-color:#303C54;color:white;border-radius:25px" class="nav-link collapsed" data-bs-target="#Roles-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:white" class="fa-solid fa-gears mx-2 "></i><span>Roles</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="Roles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="Roles" asp-action="Index">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>All Roles</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="Roles" asp-action="Create">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>Create New Roles</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+            <!-- End user Nav -->
+            <!-- start user Nav -->
+            <li class="nav-item" style="background-color:#303C54;color:white;border-radius:25px">
+                <a style="background-color:#303C54;color:white;border-radius:25px" class="nav-link collapsed" data-bs-target="#Users-nav" data-bs-toggle="collapse" href="#">
+                    <i style="color:white" class="fas fa-users mx-2 "></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="Users-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="Users" asp-action="Index">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>All Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="Users" asp-action="Create">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>Create New User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="background-color:#303C54;color:white;border-radius:25px" asp-controller="Users" asp-action="AddRole">
+                            <i style="color:white" class="bi bi-circle mx-2"></i><span>Add Role For User</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <!-- End user Nav -->
+
+        
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+
+    <main id="main" class="main" style="min-height:570px;background-color:#F0F1F3">
+
+        @RenderBody()
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+
+    @*///*@
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a class="text-dark fw-bold fst-italic" href="mailto:salh.15237657@compit.au.edu.eg">salh.15237657@compit.au.edu.eg</a>
+
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/assets/vendor/quill/quill.min.js"></script>
+    <script src="~/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+ 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    <!-- icon CDN-->
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+
+   
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    <!-- All Users Card -->
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+
+            <div class="card-body">
+                <h1 class="card-title align-self-end">All Users</h1>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="fas fa-users fs-1" style="color:#303C54"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h1>@ViewBag.Users</h1>
+                        <span class="text-success small pt-1 fw-bold">
+                            <a asp-controller="Users" asp-action="Index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </span> 
+                        <span class="text-muted small pt-2 ps-1">....</span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- End Users Card -->
+    <!-- Roles Card-->
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+
+            <div class="card-body">
+                <h1 class="card-title align-self-end">All Roles</h1>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-gears fs-1" style="color:#303C54"></i>
+                      
+                    </div>
+                    <div class="ps-3">
+                        <h1>@ViewBag.Roles</h1>
+                        <span class="text-success small pt-1 fw-bold">
+                            <a asp-controller="Roles" asp-action="Index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </span>
+                        <span class="text-muted small pt-2 ps-1">....</span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Roles Card -->
+    <!-- Employees Card-->
+    <div class="col-xxl-4 col-md-6">
+        <div class="card info-card sales-card">
+
+            <div class="card-body">
+                <h1 class="card-title align-self-end">All Employees</h1>
+
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-user-tie fs-1" style="color:#303C54 "></i>
+                      
+                    </div>
+                    <div class="ps-3">
+                        <h1>@ViewBag.Employees</h1>
+                        <span class="text-success small pt-1 fw-bold">
+                            <a asp-controller="HRs" asp-action="Index" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </span>
+                        <span class="text-muted small pt-2 ps-1">....</span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- End Employees Card -->
+</div>
+

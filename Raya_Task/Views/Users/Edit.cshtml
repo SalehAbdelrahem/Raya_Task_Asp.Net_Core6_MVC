@@ -1,0 +1,67 @@
+﻿@model BLL.DTOs.Users.DetailsUserDTO
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="d-flex justify-content-center shadow bg-secondary bg-gradient rounded-3">
+    <div class="w-75">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+               
+                <input asp-for="Id" class="form-control" type="hidden"/>
+             <div class="d-flex justify-content-start">
+                <div class="form-group p-2  w-100">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control rounded-pill" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group p-2  w-100">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control rounded-pill" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+             </div>
+        <div class="d-flex justify-content-start">
+                <div class="form-group p-2  w-100">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control rounded-pill" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group p-2  w-100">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control rounded-pill" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+        </div>
+            <div class="d-flex justify-content-start">
+                <div class="form-group p-2  w-100s">
+                    <label asp-for="RoleNames" class="control-label"></label>
+                    @*<input asp-for="Status" class="form-control" />*@
+                    <select asp-for="RoleNames" asp-items="@ViewBag.Roles" class="form-control "></select>
+
+                    <span asp-validation-for="RoleNames" class="text-danger"></span>
+                </div>
+
+            </div>
+
+          
+            <div class="form-group p-2 d-flex justify-content-between">
+                <input type="submit" value="Edite" class="btn CustomCreateButtonColor " />
+
+                <a asp-action="Index" class="btn CustomButtonColor"> <i class="fa-solid fa-angles-left"></i>Back to List</a>
+
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,70 @@
+﻿
+body {
+    background-color: #F0F1F3;
+}
+
+.card {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .5);
+}
+
+h6,
+h1 {
+    color: #FAB005;
+    font-family: cursive;
+}
+
+label,
+h4,
+a,
+p {
+    font-family: cursive;
+    color: #183153;
+}
+
+input {
+    border: 10px #183153;
+}
+
+.icon {
+    position: absolute;
+    top: calc(43%);
+    left: 1.8rem;
+}
+
+.iconn {
+    position: absolute;
+    top: calc(58%);
+    left: 1.8rem;
+}
+
+a {
+    text-decoration: underline dotted;
+    color: #4993DB;
+}
+
+    a:hover {
+        color: #183153;
+    }
+
+button {
+    border-radius: 10px;
+    background-color: #FFD43B;
+    height: 50px;
+    border-top: 2px solid #183153;
+    border-left: 2px solid #183153;
+    border-right: 2px solid #183153;
+    border-bottom: 8px solid #183153;
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    color: #183153;
+}
+
+    button:hover {
+        background-color: #FAB005;
+    }
+
+
